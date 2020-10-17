@@ -1,4 +1,4 @@
-package DZ01;
+package DZ01.Solutions;
 
 import java.util.Scanner;
 

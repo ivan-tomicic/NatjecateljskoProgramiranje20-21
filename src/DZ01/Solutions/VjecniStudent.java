@@ -1,4 +1,4 @@
-package DZ01;
+package DZ01.Solutions;
 
 import java.util.Scanner;
 
@@ -87,7 +87,7 @@ public class VjecniStudent {
             l /= 2;
             r /= 2;
         }
-        
+
         while(index < nextPowerOfTwo) {
             if(segmentTree[index*2] == max) {
                 index = index*2;
