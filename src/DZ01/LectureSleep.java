@@ -3,6 +3,7 @@ package DZ01;
 import java.util.Scanner;
 
 public class LectureSleep {
+
     static int N;
     static int K;
     static int[] theorems;
@@ -13,8 +14,10 @@ public class LectureSleep {
         Scanner sc = new Scanner(System.in);
         N = sc.nextInt();
         K = sc.nextInt();
+
         theorems = new int[N];
         MishkaStates = new int[N];
+
         int sumWhileAwake = 0;
 
         for(int i = 0; i < N; i++) {
@@ -28,7 +31,7 @@ public class LectureSleep {
             }
         }
         int maxSum = 0;
-        for(int i = 0; i < K; i++) {  //nadji sumu prvog prozora velicine k
+        for(int i = 0; i < K; i++) {
             maxSum += theorems[i];
         }
 
