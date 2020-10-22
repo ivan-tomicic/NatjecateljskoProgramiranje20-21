@@ -39,11 +39,16 @@ public class TheParade {
     }
 
     /*
-    We try to fill the parade with numberOfSoldiers by going through the numberOfHeights array
-    and filling rows with two adjacent heights.
+    This function returns a boolean -> true if we can make a parade with
+    numberOfSoldiers, false if not. Before checking, we ceil numberOfSoldiers
+    to the next number that is divisible by numberOfRows. For example, if we are checking
+    whether we can fill 23 soldiers in 5 rows, we increase 23 to 25 so that it's divisible by 5.
+    We do it by going through the numberOfHeights array
+    and filling rows with two adjacent heights. If all the places are filled,
+    it means we succeeded and the function returns true.
      */
-    static boolean valid(long numberOfSoldiers) { //is it possible to make a parade with that number of
-                                                // soldiers and rows?
+    static boolean valid(long numberOfSoldiers) {
+
         if(numberOfSoldiers % numberOfRows != 0) {
             numberOfSoldiers = (numberOfSoldiers/numberOfRows + 1) * numberOfRows;
         }
