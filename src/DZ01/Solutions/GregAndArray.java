@@ -70,16 +70,16 @@ public class GregAndArray {
     public static void updateTree(int l, int r, long v, long[] tree, int nextPower) {
         int a = l + nextPower - 1;
         int b = r + nextPower;
-        tree[a] += v;      //povecat cemo za v vrijednost u difference array na l-tom elementu
-        tree[b] -= v;      //smanjit cemo za v vrijednost u difference array na r+1-tom elementu
+        tree[a] += v;
+        tree[b] -= v;
 
         a /= 2;
         b /= 2;
-        while (a > 0) {           //sve pretke od l povecaj za v
+        while (a > 0) {
             tree[a] += v;
             a /=2;
         }
-        while (b > 0) {     //sve pretke od r+1 smanji za v
+        while (b > 0) {
             tree[b] -= v;
             b /= 2;
         }
