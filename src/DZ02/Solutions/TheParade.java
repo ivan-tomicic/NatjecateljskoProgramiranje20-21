@@ -27,9 +27,9 @@ public class TheParade {
 
             //We are searching for the greatest number of soldiers that can participate in the parade
             //using binary search on valid function
-            upperBound = upperBound/numberOfRows * numberOfRows;
+            //upperBound = upperBound/numberOfRows * numberOfRows;
             long maximumNumberOfSoldiers = 0;
-            for(long jump = upperBound; jump >= 1; jump /= 2) {
+            for(long jump = upperBound; jump != 0; jump /= 2) {
                 while(valid(maximumNumberOfSoldiers + jump)) {
                     maximumNumberOfSoldiers += jump;
                 }
@@ -55,29 +55,20 @@ public class TheParade {
 
         long columnSize = numberOfSoldiers/numberOfRows;
         long[] temporaryHeightsArray = numberOfHeightsArray.clone();
-        long positionsLeft = numberOfSoldiers;
+        long rowsLeft = numberOfRows;
 
         for(int height = 1; height <= numberOfHeightsArray.length - 1; height++) {
-            long sum;
-            if(height != 1 && (sum = temporaryHeightsArray[height] + temporaryHeightsArray[height - 1]) >= columnSize) {
-                long positionsItCanFill = sum/columnSize * columnSize;
-                temporaryHeightsArray[height] -= positionsItCanFill - temporaryHeightsArray[height - 1];
-                temporaryHeightsArray[height - 1] = 0;
-                positionsLeft -= positionsItCanFill;
+            rowsLeft -= temporaryHeightsArray[height]/columnSize;
+            temporaryHeightsArray[height] = temporaryHeightsArray[height] % columnSize;
 
-            } else if((sum = temporaryHeightsArray[height]) >= columnSize) {
-                long positionsItCanFill = sum/columnSize * columnSize;
-                temporaryHeightsArray[height] -= positionsItCanFill;
-                positionsLeft -= positionsItCanFill;
-
-            } else if(height != numberOfHeightsArray.length - 1 && (sum = temporaryHeightsArray[height] + temporaryHeightsArray[height + 1]) >= columnSize) {
-                long positionsItCanFill = sum/columnSize * columnSize;
-                temporaryHeightsArray[height + 1] -= positionsItCanFill - temporaryHeightsArray[height];
-                temporaryHeightsArray[height] = 0;
-                positionsLeft -= positionsItCanFill;
-
+            if(height < temporaryHeightsArray.length - 1 && temporaryHeightsArray[height] != 0) {
+                if (temporaryHeightsArray[height] + temporaryHeightsArray[height + 1] >= columnSize) {
+                    temporaryHeightsArray[height + 1] -= columnSize - temporaryHeightsArray[height];
+                    temporaryHeightsArray[height] = 0;
+                    rowsLeft--;
+                }
             }
-            if(positionsLeft <= 0) {
+            if(rowsLeft <= 0) {
                 return true;
             }
         }
