@@ -1,4 +1,4 @@
-package DZ03.Solutions;
+package DZ03.UnaccpetedSolutions;
 
 import java.util.*;
 
